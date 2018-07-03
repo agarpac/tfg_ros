@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ros_kinetic:
+    ports: 
+      - "9090:9090"
+      - "8085:8085"
+      - "8080:8080"
+    volumes: 
+      - "./docker-files/bashrc_root:/root/.bashrc"
+      - "./docker-files/startup.sh:/root/startup.sh"
+      - "./docker-files/files:/root/files"
+      #- "src:/opt/ros/kinetic/share/tfg"
+    container_name: ros_kinetic
+    image: custom-ros
+    build:
+      context: ./docker-files
+      dockerfile: Dockerfile
+    command: roscore
